@@ -1,20 +1,9 @@
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/r0x0d/multi_coverage_demo/main.svg)](https://results.pre-commit.ci/latest/github/r0x0d/multi_coverage_demo/main)
-[![Coverage](https://github.com/r0x0d/multi_coverage_demo/actions/workflows/coverage.yml/badge.svg)](https://github.com/r0x0d/multi_coverage_demo/actions/workflows/coverage.yml)
-[![codecov](https://codecov.io/gh/r0x0d/multi_coverage_demo/branch/main/graph/badge.svg?token=<your-token-for-badges>)](https://codecov.io/gh/r0x0d/multi_coverage_demo)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/r0x0d/multi_coverage_demo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/r0x0d/multi_coverage_demo/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/r0x0d/multi_coverage_demo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/r0x0d/multi_coverage_demo/context:python)
-[![Code Scanning - Action](https://github.com/r0x0d/multi_coverage_demo/actions/workflows/codeql.yml/badge.svg)](https://github.com/r0x0d/multi_coverage_demo/actions/workflows/codeql.yml)
+# Multi Coverage Demo
 
-# multi-coverage-demo
+This repository was made to identify if [codecov](https://app.codecov.io) could handle different coverage reports and merge them all together (It turns out it can!)
 
-A multi coverage demo
+This was a test to check whether or not we could merge this PR https://github.com/oamg/convert2rhel/pull/465 to actually collect coverage from the tests we ran in CentOS 7 and CentOS 8.
 
-# Usage
+The code is basically pretty simple, it's just a couple of `if` statements to use different code to run in different systems (Linux and Windows). With that, we have a workflow that runs our test suite using both systems (Linux and Windows) and in the end, they upload the coverage to the codecov application.
 
-Describe here how the awesome multi-coverage-demo works!
-
-```bash
-git clone git@github.com:r0x0d/multi_coverage_demo.git
-cd multi_coverage_demo
-python -m multi_coverage_demo
-```
+In the first run, codecov only collected 50% of the coverage, because the Windows workflow finished and uploaded its own coverage report to codecov, then, the Linux workflow finished and uploaded its own view of the coverage report, which was about 66% of the code. After all of the finished workflows, codecov updated itself with the coverage of 100% merging all of its reports.
